@@ -1,6 +1,7 @@
 import { ApiResponse } from "../types/ApiResponse";
+import { IDataService } from "./IDataService";
 
-export class DataService {
+export class JsonDataService implements IDataService {
 
     private _data: ApiResponse;
     public get data(): ApiResponse {

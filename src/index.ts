@@ -1,5 +1,8 @@
 'use strict';
-import { DataService } from "./services/dataService";
+import { IDataService } from "./services/IDataService";
+import { IPackageService } from "./services/IPackageService";
+import { JsonDataService } from "./services/JsonDataService";
+import { PackageService } from "./services/PackageService";
 //  require("./types/data-server");
 
 import { Article, HeatPump, InstallationMaterial, Tool, PricedMaterials } from "./types/Articles";
@@ -10,13 +13,9 @@ import { Restocking } from "./types/Restocking";
 
 const restockSoonCount = 3;
 
-let dataService: DataService = new DataService("../data-server/index");
-
-var data = dataService.data;
-
-function findArticles(orderArticles: string[], storageArticles: Article[]) {
-    return orderArticles.map(tool => storageArticles.find(article => article.id === tool)).filter(article => article);
-}
+const dataService: IDataService = new JsonDataService("../data-server/index");
+const packageService: IPackageService = new PackageService();
+const data = dataService.data;
 
 function countArticles(storageArticles: Article[]): Map<PricedMaterials, number> {
     const map: Map<PricedMaterials, number> = storageArticles.reduce((acc, e) => acc.set(e, (acc.get(e) || 0) + 1), new Map());
@@ -26,27 +25,27 @@ function countArticles(storageArticles: Article[]): Map<PricedMaterials, number>
 
 
 let orderToPack: Order = data.orders[4];
-let packagedOrder: Package = { orderId: orderToPack.id };
+let packagedOrder: Package = new Package(orderToPack.id);
 
 let packageArticles: Article[] = [];
 let packagePumps: HeatPump[];
 let packageMaterials: InstallationMaterial[];
 let packageTools: Tool[];
 
-packagePumps = findArticles(orderToPack.articles, data.heatPumps) as HeatPump[];
+packagePumps = packageService.packPumps(orderToPack.articles, data.heatPumps);
+packageMaterials = packageService.packMaterials(orderToPack.articles, data.installationMaterials);
+packageTools = packageService.packTools(orderToPack.articles, data.tools);
+
 packageArticles = packageArticles.concat(packagePumps);
-
-packageMaterials = findArticles(orderToPack.articles, data.installationMaterials) as InstallationMaterial[];
 packageArticles = packageArticles.concat(packageMaterials);
-
-packageTools = findArticles(orderToPack.articles, data.tools) as Tool[];
 packageArticles = packageArticles.concat(packageTools);
+
 
 packagedOrder.orderArticles = { orderId: packagedOrder.orderId, articles: packageArticles };
 
 let packageInvoice: Invoice = { orderId: packagedOrder.orderId };
 
-let restockableArticles: Map<HeatPump | InstallationMaterial, number> = countArticles(packagePumps.concat(packageMaterials));
+let restockableArticles: Map<PricedMaterials, number> = countArticles(packagePumps.concat(packageMaterials));
 
 for (let [article, count] of restockableArticles) {
     if (article.stock - count < 0) {
@@ -66,7 +65,7 @@ packagedOrder.invoice = packageInvoice;
 
 let packageRestock: Restocking = { orderId: packagedOrder.orderId };
 
-let articlesToRestock: Array<HeatPump | InstallationMaterial> = [];
+let articlesToRestock: Array<PricedMaterials> = [];
 for (let [article, count] of packageInvoice.articles) {
     if (article.stock - count == 0) {
         articlesToRestock?.push(article);
