@@ -1,0 +1,4 @@
+"extends": "airbnb-base/legacy"
+"rules": {
+    "no-console": "off"
+}
