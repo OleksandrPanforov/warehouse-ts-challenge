@@ -1,7 +1,7 @@
 type Order = {
-    id: string,
-    articles: string[],
-    installationDate: Date,
+  id: string,
+  articles: string[],
+  installationDate: Date,
 };
 
-export { Order }
+export { Order };

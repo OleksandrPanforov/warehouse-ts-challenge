@@ -1,17 +1,17 @@
 type Article = {
-    id: string,
-    productCode: string,
-    name: string,
-    description: string,
-    stock: number,
-}
+  id: string,
+  productCode: string,
+  name: string,
+  description: string,
+  stock: number,
+};
 
 type HeatPump = Article & {
-    unitPrice: number,
+  unitPrice: number,
 };
 
 type InstallationMaterial = Article & {
-    unitPrice: number,
+  unitPrice: number,
 };
 
 type Tool = Article & {};
@@ -19,9 +19,9 @@ type Tool = Article & {};
 type PricedMaterials = HeatPump | InstallationMaterial;
 
 export {
-    Article,
-    HeatPump,
-    InstallationMaterial,
-    Tool,
-    PricedMaterials
-}
+  Article,
+  HeatPump,
+  InstallationMaterial,
+  Tool,
+  PricedMaterials,
+};

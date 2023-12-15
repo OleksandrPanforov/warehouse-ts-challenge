@@ -1,8 +1,8 @@
-import { PricedMaterials } from "./Articles.js"
+import { PricedMaterials } from './Articles.js';
 
 type Restocking = {
-    orderId: string,
-    articles?: Map<PricedMaterials, number>
-}
+  orderId: string,
+  articles?: Map<PricedMaterials, number>
+};
 
-export { Restocking }
+export { Restocking };
