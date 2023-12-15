@@ -1,4 +1,4 @@
-import { PricedMaterials } from "./Articles"
+import { PricedMaterials } from "./Articles.js"
 
 type Restocking = {
     orderId: string,

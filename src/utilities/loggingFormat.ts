@@ -1,4 +1,4 @@
-import { ColorChange } from "./colorChange";
+import { ColorChange } from "./colorChange.js";
 
 function warning(message: string): string {
     return `${ColorChange.Yellow}[!] Warning: ${message}${ColorChange.Default}`;

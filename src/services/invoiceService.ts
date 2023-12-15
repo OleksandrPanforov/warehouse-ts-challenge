@@ -1,6 +1,6 @@
-import { PricedMaterials } from "../types/Articles";
-import { Invoice } from "../types/Invoice";
-import { IInvoiceService } from "./IInvoiceService";
+import { PricedMaterials } from "../types/Articles.js";
+import { Invoice } from "../types/Invoice.js";
+import { IInvoiceService } from "./IInvoiceService.js";
 
 export class InvoiceService implements IInvoiceService {
     public formInvoice(orderId: string, pricedArticles: Map<PricedMaterials, number>): Invoice {

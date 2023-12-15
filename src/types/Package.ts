@@ -1,6 +1,6 @@
-import { HeatPump, InstallationMaterial, Tool } from "./Articles";
-import { Invoice } from "./Invoice"
-import { Restocking } from "./Restocking"
+import { HeatPump, InstallationMaterial, Tool } from "./Articles.js";
+import { Invoice } from "./Invoice.js"
+import { Restocking } from "./Restocking.js"
 
 export class Package {
     public readonly orderId: string;

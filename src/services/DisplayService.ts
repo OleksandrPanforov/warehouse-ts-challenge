@@ -1,6 +1,6 @@
-import { Package } from "../types/Package";
-import { success, highlight, warning, error } from "../utilities/loggingFormat";
-import { IDisplayService } from "./IDisplayService";
+import { Package } from "../types/Package.js";
+import { success, highlight, warning, error } from "../utilities/loggingFormat.js";
+import { IDisplayService } from "./IDisplayService.js";
 
 export class DisplayService implements IDisplayService {
     private readonly separator: string = '\t+-------------------------+----------------------------------------+\r\n';

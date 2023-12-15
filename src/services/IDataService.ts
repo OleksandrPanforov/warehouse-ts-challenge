@@ -1,5 +1,5 @@
-import { ApiResponse } from "../types/ApiResponse";
+import { ApiResponse } from "../types/ApiResponse.js";
 
 export interface IDataService {
-    data: ApiResponse;
+    getData(): Promise<ApiResponse>;
 }

@@ -1,9 +1,9 @@
-import { ApiResponse } from "../types/ApiResponse";
-import { HeatPump, InstallationMaterial, Article, PricedMaterials, Tool } from "../types/Articles";
-import { Order } from "../types/Order";
-import { Package } from "../types/Package";
-import { IInvoiceService } from "./IInvoiceService";
-import { IPackageService } from "./IPackageService";
+import { ApiResponse } from "../types/ApiResponse.js";
+import { HeatPump, InstallationMaterial, Article, PricedMaterials, Tool } from "../types/Articles.js";
+import { Order } from "../types/Order.js";
+import { Package } from "../types/Package.js";
+import { IInvoiceService } from "./IInvoiceService.js";
+import { IPackageService } from "./IPackageService.js";
 
 export class PackageService implements IPackageService {
 
