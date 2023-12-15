@@ -5,7 +5,7 @@
     "strict": true,
     "importHelpers": true,
     "target": "ESNext",
-    "module": "NodeNext",
+    "module": "ESNext",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
