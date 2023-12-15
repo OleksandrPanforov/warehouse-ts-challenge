@@ -1,12 +1,7 @@
-import { Article, HeatPump, InstallationMaterial, PricedMaterials, Tool } from "../types/Articles";
+import { ApiResponse } from "../types/ApiResponse";
+import { Order } from "../types/Order";
+import { Package } from "../types/Package";
 
 export interface IPackageService {
-    restockSoonCount: number;
-
-    packPumps(orderArticles: string[], heatPumps: HeatPump[]): HeatPump[]
-    packMaterials(orderArticles: string[], heatPumps: InstallationMaterial[]): InstallationMaterial[]
-    packTools(orderArticles: string[], heatPumps: Tool[]): Tool[]
-
-    mapPricedArticles(storageArticles: Article[]): Map<PricedMaterials, number>;
-    checkStock(restockableArticles: Map<PricedMaterials, number>): Map<PricedMaterials, number>;
+    pack(orderToPack: Order, data: ApiResponse): Package;
 }

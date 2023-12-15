@@ -18,4 +18,10 @@ type Tool = Article & {};
 
 type PricedMaterials = HeatPump | InstallationMaterial;
 
-export { Article, HeatPump, InstallationMaterial, Tool, PricedMaterials }
+export {
+    Article,
+    HeatPump,
+    InstallationMaterial,
+    Tool,
+    PricedMaterials
+}
