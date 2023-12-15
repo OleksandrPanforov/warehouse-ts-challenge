@@ -29,16 +29,17 @@ export class PackageService implements IPackageService {
         return map;
     }
 
-    checkStock(restockableArticles: Map<PricedMaterials, number>): PricedMaterials[] {
-        const articlesToRestock: Array<PricedMaterials> = [];
+    checkStock(restockableArticles: Map<PricedMaterials, number>): Map<PricedMaterials, number> {
+        const articlesToRestock: Map<PricedMaterials, number> = new Map<PricedMaterials, number>();
         for (let [article, count] of restockableArticles) {
             if (article.stock - count < 0) {
-                error(`Insufficent amount of ${article.name}. Order can't be fulfilled.`);
+                articlesToRestock.set(article, count);
+                console.log(error(`Insufficent amount of ${article.name} (${article.productCode}). Order can't be fulfilled.`));
             } else if (article.stock - count == 0) {
-                articlesToRestock?.push(article);
-                warning(`${article.name} is the last item in stock. Listed for restocking.`);
+                articlesToRestock.set(article, count);
+                console.log(warning(`${article.name} (${article.productCode}) is the last item in stock. Listed for restocking.`));
             } else if (article.stock - count <= this._restockSoonCount) {
-                warning(`${article.name} stock after the order will be less than ${this._restockSoonCount}. Be sure to restock soon!`);
+                console.log(warning(`${article.name} (${article.productCode}) stock after the order will be less than ${this._restockSoonCount}. Be sure to restock soon!`));
             }
         }
         return articlesToRestock;

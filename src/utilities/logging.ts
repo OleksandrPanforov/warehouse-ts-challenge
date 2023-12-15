@@ -1,9 +1,19 @@
-function warning(message: string):void {
-    console.log(`\x1b[33m Warning: ${message} \x1b[0m`)
+import { ColorChange } from "./colorChange";
+
+function warning(message: string): string {
+    return `${ColorChange.Yellow}[!] Warning: ${message}${ColorChange.Default}`;
 }
 
-function error(message: string): void {
-    console.log(`\x1b[31m Error: ${message} \x1b[0m`)
+function error(message: string): string {
+    return `${ColorChange.Red}[X] Error: ${message}${ColorChange.Default}`;
 }
 
-export {warning, error}
+function highlight(message: string): string {
+    return `${ColorChange.Blue}[+] ${message}${ColorChange.Default}`;
+}
+
+function success(message: string): string {
+    return `${ColorChange.Green}[✓] ${message}${ColorChange.Default}`;
+}
+
+export {warning, error, highlight, success}

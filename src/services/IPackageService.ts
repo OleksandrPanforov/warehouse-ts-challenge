@@ -2,11 +2,11 @@ import { Article, HeatPump, InstallationMaterial, PricedMaterials, Tool } from "
 
 export interface IPackageService {
     restockSoonCount: number;
-    
+
     packPumps(orderArticles: string[], heatPumps: HeatPump[]): HeatPump[]
     packMaterials(orderArticles: string[], heatPumps: InstallationMaterial[]): InstallationMaterial[]
     packTools(orderArticles: string[], heatPumps: Tool[]): Tool[]
 
     mapPricedArticles(storageArticles: Article[]): Map<PricedMaterials, number>;
-    checkStock(restockableArticles: Map<PricedMaterials, number>):Array<PricedMaterials>;
+    checkStock(restockableArticles: Map<PricedMaterials, number>): Map<PricedMaterials, number>;
 }

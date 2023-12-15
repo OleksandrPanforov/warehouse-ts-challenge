@@ -1,6 +1,5 @@
 import { PricedMaterials } from "./Articles"
-import { OrderArticles } from "./Order"
 
-type Restocking = Pick<OrderArticles, "orderId"> & { articles?: Array<PricedMaterials> }
+type Restocking = { orderId: string, articles?: Map<PricedMaterials, number> }
 
 export { Restocking }
